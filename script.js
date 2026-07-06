@@ -1,6 +1,10 @@
 /* ============================================
    Search Landing Page — Scripts
-   ============================================ */
+   ============================================
+   Handles the hero typing animation that
+   cycles through phrases from data-words,
+   and the dark/light theme toggle with
+   localStorage persistence. */
 
 document.addEventListener('DOMContentLoaded', () => {
 
