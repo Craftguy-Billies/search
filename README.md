@@ -1,34 +1,61 @@
-# VideoVault 🎬
+# Mini App Collection 🧩
 
-<!-- A YouTube video displayer app built with vanilla JavaScript -->
+A collection of interactive mini web apps built with vanilla HTML, CSS, and JavaScript. Features dark/light theme support, responsive design, localStorage persistence, and keyboard accessibility.
 
-hello world
+## Apps
 
-A simple YouTube video displayer app built with vanilla JavaScript. Add YouTube URLs, view video metadata, and play videos inline.
+### 🎬 VideoVault
+YouTube video displayer — add YouTube URLs, view video metadata, and play videos inline.
+
+- Auto-fetches metadata (title, author, thumbnail) via the YouTube oEmbed API
+- Dark/light theme toggle with persisted preference
+- LocalStorage persistence
+
+**Files:** `index.html`, `style.css`, `script.js`, `js/app.js`, `js/app.test.js`
+
+### 🧮 Calculator
+A full-featured calculator with keyboard support.
+
+- Basic operations: add, subtract, multiply, divide, percentage
+- Expression display showing pending operations
+- Active operator highlighting
+- Keyboard support (0-9, +, -, *, /, Enter, Backspace, Escape)
+- Dark/light theme toggle
+
+**Files:** `calculator.html`, `calculator.css`, `calculator.js`
+
+### ✅ Todo List
+Task manager with add, delete, and complete functionality.
+
+- Add and remove tasks
+- Mark tasks as complete with strikethrough styling
+- Clean, responsive UI
+
+**Files:** `todo.html`, `todo.css`, `todo.js`
+
+### 🍅 Pomodoro Timer
+Focus timer with 25-minute work / 5-minute break cycling.
+
+- Circular SVG progress ring with animated countdown
+- Session counter tracking completed focus sessions
+- Sound notification (Web Audio API chime) on session complete
+- Session history persisted in localStorage
+- Start / Pause / Reset controls
+- Dark/light theme toggle
+
+**Files:** `pomodoro.html`, `pomodoro.css`, `pomodoro.js`
+
+### ℹ️ About
+Simple informational page with navigation, centered layout, and a dark mode toggle.
+
+**Files:** `about.html`
 
 ## Features
 
-- **Add videos** by pasting a YouTube URL or video ID
-- **Auto-fetches metadata** (title, author, thumbnail) via the YouTube oEmbed API
-- **Inline video player** with autoplay support
-- **Dark / light theme toggle** with persisted preference
-- **LocalStorage persistence** — your videos survive page reloads
-- **Video management** — remove individual videos, clear all, refresh metadata
-
-## Usage
-
-1. Paste a YouTube URL (or just a video ID) into the input field
-2. Press **Add** or hit **Enter**
-3. Click a video thumbnail to play it inline
-4. Use **☀️ / 🌙** to toggle between dark and light themes
-
-Supported URL formats:
-- `https://www.youtube.com/watch?v=VIDEO_ID`
-- `https://youtu.be/VIDEO_ID`
-- `https://www.youtube.com/embed/VIDEO_ID`
-- `https://www.youtube.com/shorts/VIDEO_ID`
-- `https://m.youtube.com/watch?v=VIDEO_ID`
-- Plain video ID (e.g., `dQw4w9WgXcQ`)
+- **Dark/light themes** across all apps — preferences saved to localStorage
+- **Responsive design** — works on desktop and mobile
+- **Keyboard accessible** — calculator and other apps support keyboard input
+- **No frameworks** — built with vanilla HTML, CSS, and JavaScript
 
 ## Running locally
 
@@ -50,16 +77,26 @@ Unit tests are written with [Jest](https://jestjs.io/). Run them with:
 npm test
 ```
 
-The test suite covers URL parsing, date formatting, video list operations, localStorage persistence, and theme preference persistence.
-
 ## Project structure
 
 ```
-├── index.html        Main application HTML
+├── index.html          VideoVault app
+├── calculator.html     Calculator app
+├── todo.html           Todo list app
+├── pomodoro.html       Pomodoro timer
+├── about.html          About page
+├── style.css           Global styles (themes, landing page)
+├── script.js           Typing animation + theme toggle
+├── calculator.css      Calculator styles
+├── calculator.js       Calculator logic
+├── todo.css            Todo list styles
+├── todo.js             Todo list logic
+├── pomodoro.css        Pomodoro styles
+├── pomodoro.js         Pomodoro logic
+├── favicon.svg         App favicon
 ├── js/
-│   ├── app.js        Core logic (pure functions, no DOM dependency)
-│   └── app.test.js   Jest unit tests
-├── favicon.svg       App favicon
-├── package.json      Node project configuration
-└── README.md         This file
+│   ├── app.js          Core logic (pure functions, no DOM dependency)
+│   └── app.test.js     Jest unit tests
+├── package.json        Node project configuration
+└── README.md           This file
 ```
