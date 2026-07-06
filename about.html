@@ -15,6 +15,7 @@
         <a href="index.html">Home</a>
         <a href="about.html" class="active">About</a>
       </div>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
     </nav>
   </header>
 
@@ -27,5 +28,26 @@
   <footer>
     <p>&copy; 2026 VideoVault. Made with vanilla JS.</p>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      if (!toggle) return;
+
+      function setTheme(isLight) {
+        document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+        toggle.textContent = isLight ? '☀️' : '🌙';
+      }
+
+      const saved = localStorage.getItem('landing_theme');
+      if (saved === 'light') setTheme(true);
+
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        setTheme(!isLight);
+        localStorage.setItem('landing_theme', isLight ? 'dark' : 'light');
+      });
+    });
+  </script>
 </body>
 </html>
