@@ -74,6 +74,8 @@ Then open `http://localhost:8080` in your browser.
 > **📝 Note:** Each app is a standalone HTML file — you can open them individually without needing a server, though some features (like favicon loading) work best when served via HTTP.
 >
 > **🔧 Compatibility:** All apps target modern browsers (Chrome, Firefox, Safari, Edge). The Pomodoro timer's sound notification uses the Web Audio API, which requires a secure context (HTTPS or localhost) to play automatically.
+>
+> **📌 Comment A:** This project was built incrementally across multiple sessions, with each mini app added as a self-contained feature. The todo list, pomodoro timer, calculator, and about page were each developed independently and later integrated into a unified collection with shared theming and navigation.
 
 ## Tests
 
