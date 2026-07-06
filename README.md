@@ -1,3 +1,5 @@
+hello world
+
 # Mini App Collection 🧩
 
 A collection of interactive mini web apps built with vanilla HTML, CSS, and JavaScript. Features dark/light theme support, responsive design, localStorage persistence, and keyboard accessibility.
