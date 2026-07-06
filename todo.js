@@ -1,7 +1,7 @@
 /* ── State ─────────────────────────────────────────── */
 let todos = [];
 const STORAGE_KEY = 'taskflow_todos';
-const THEME_KEY = 'taskflow_theme';
+const THEME_KEY = 'landing_theme';
 
 /* ── DOM refs ──────────────────────────────────────── */
 const form = document.getElementById('todo-form');

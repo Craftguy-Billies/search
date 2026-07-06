@@ -4,14 +4,15 @@ A collection of interactive mini web apps built with vanilla HTML, CSS, and Java
 
 ## Apps
 
-### 🎬 VideoVault
-YouTube video displayer — add YouTube URLs, view video metadata, and play videos inline.
+### 🔍 Search Landing Page
+Brand landing page with hero section, typing animation, feature cards, and theme toggle.
 
-- Auto-fetches metadata (title, author, thumbnail) via the YouTube oEmbed API
+- Animated typing headline cycling through multiple phrases
 - Dark/light theme toggle with persisted preference
-- LocalStorage persistence
+- Feature showcase with six highlight cards
+- Responsive design with decorative background orbs
 
-**Files:** `index.html`, `style.css`, `script.js`, `js/app.js`, `js/app.test.js`
+**Files:** `index.html`, `style.css`, `script.js`
 
 ### 🧮 Calculator
 A full-featured calculator with keyboard support.
@@ -92,7 +93,7 @@ npm test
 ## Project structure
 
 ```
-├── index.html          VideoVault app
+├── index.html          Search landing page
 ├── calculator.html     Calculator app
 ├── todo.html           Todo list app
 ├── pomodoro.html       Pomodoro timer

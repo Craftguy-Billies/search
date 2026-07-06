@@ -24,6 +24,7 @@
   --btn-operator-bg: rgba(99, 102, 241, 0.2);
   --btn-operator-hover: rgba(99, 102, 241, 0.35);
   --btn-operator-active: rgba(99, 102, 241, 0.45);
+  --btn-operator-selected: rgba(99, 102, 241, 0.55);
   --btn-equals-bg: linear-gradient(135deg, #6366f1, #8b5cf6);
   --btn-equals-hover: linear-gradient(135deg, #7c3aed, #a78bfa);
   --btn-function-bg: rgba(255, 255, 255, 0.04);
@@ -55,6 +56,7 @@
   --btn-operator-bg: rgba(99, 102, 241, 0.1);
   --btn-operator-hover: rgba(99, 102, 241, 0.2);
   --btn-operator-active: rgba(99, 102, 241, 0.3);
+  --btn-operator-selected: rgba(99, 102, 241, 0.4);
   --btn-equals-bg: linear-gradient(135deg, #6366f1, #8b5cf6);
   --btn-equals-hover: linear-gradient(135deg, #7c3aed, #a78bfa);
   --btn-function-bg: rgba(0, 0, 0, 0.03);
@@ -267,7 +269,7 @@ body {
 }
 
 .btn-operator.active {
-  background: rgba(99, 102, 241, 0.5);
+  background: var(--btn-operator-selected);
   color: #fff;
 }
 

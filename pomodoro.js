@@ -244,7 +244,7 @@ function resetTimer() {
 
 function loadTheme() {
   try {
-    return localStorage.getItem('pomodoro_theme') === 'light';
+    return localStorage.getItem('landing_theme') === 'light';
   } catch {
     return false;
   }
@@ -259,7 +259,7 @@ function toggleTheme() {
   const isLight = document.documentElement.getAttribute('data-theme') === 'light';
   applyTheme(!isLight);
   try {
-    localStorage.setItem('pomodoro_theme', isLight ? 'dark' : 'light');
+    localStorage.setItem('landing_theme', isLight ? 'dark' : 'light');
   } catch { /* noop */ }
 }
 
