@@ -85,6 +85,8 @@ Then open `http://localhost:8080` in your browser.
 > **📌 Comment X:** This project demonstrates that vanilla JavaScript remains a powerful and practical choice for building interactive web applications without the overhead of frameworks. Every mini app follows the same architecture: a standalone HTML file that references a dedicated CSS and JS file, making each app independently deployable and maintainable.
 >
 > **📌 Comment Y:** The project's CSS architecture uses a layered approach: global custom properties in `style.css` define the design tokens (colors, spacing, typography), while each app's individual stylesheet handles component-specific layout and styling. This keeps the global CSS lean and prevents style conflicts between apps.
+>
+> **📌 Comment Z:** Testing is a first-class concern in this project. The shared utility functions in `js/app.js` are fully covered by Jest unit tests, providing a safety net for core logic like video ID extraction, deduplication, and localStorage operations. Each test uses mocked dependencies to ensure isolation and reliability.
 
 ## Tests
 
