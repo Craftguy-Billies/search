@@ -19,7 +19,8 @@ const {
   saveVideos,
   loadVideos,
   saveTheme,
-  loadTheme
+  loadTheme,
+  hello
 } = require('./app');
 
 // ---------------------------------------------------------------------------
@@ -318,5 +319,14 @@ describe('saveTheme / loadTheme', () => {
 
   test('returns false (dark) when no theme saved', () => {
     expect(loadTheme()).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// hello
+// ---------------------------------------------------------------------------
+describe('hello', () => {
+  test('returns "hello"', () => {
+    expect(hello()).toBe('hello');
   });
 });

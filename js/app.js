@@ -79,6 +79,10 @@ function loadTheme() {
   return localStorage.getItem(THEME_KEY) === 'light';
 }
 
+function hello() {
+  return 'hello';
+}
+
 // Export for testing
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
@@ -93,6 +97,7 @@ if (typeof module !== 'undefined' && module.exports) {
     fetchVideoInfo,
     saveTheme,
     loadTheme,
+    hello,
     STORAGE_KEY,
     THEME_KEY
   };
