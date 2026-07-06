@@ -76,6 +76,8 @@ Then open `http://localhost:8080` in your browser.
 > **🔧 Compatibility:** All apps target modern browsers (Chrome, Firefox, Safari, Edge). The Pomodoro timer's sound notification uses the Web Audio API, which requires a secure context (HTTPS or localhost) to play automatically.
 >
 > **📌 Comment A:** This project was built incrementally across multiple sessions, with each mini app added as a self-contained feature. The todo list, pomodoro timer, calculator, and about page were each developed independently and later integrated into a unified collection with shared theming and navigation.
+>
+> **📌 Comment B:** All mini apps share a common design language through CSS custom properties defined in `style.css`. This makes global theme changes (colors, spacing, fonts) as simple as updating a few variable values — no need to touch each app's individual stylesheet.
 
 ## Tests
 
