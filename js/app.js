@@ -83,6 +83,10 @@ function hello() {
   return 'hello';
 }
 
+function goodbye() {
+  return 'goodbye';
+}
+
 // Export for testing
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
@@ -98,6 +102,7 @@ if (typeof module !== 'undefined' && module.exports) {
     saveTheme,
     loadTheme,
     hello,
+    goodbye,
     STORAGE_KEY,
     THEME_KEY
   };

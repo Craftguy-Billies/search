@@ -20,7 +20,8 @@ const {
   loadVideos,
   saveTheme,
   loadTheme,
-  hello
+  hello,
+  goodbye
 } = require('./app');
 
 // ---------------------------------------------------------------------------
@@ -328,5 +329,14 @@ describe('saveTheme / loadTheme', () => {
 describe('hello', () => {
   test('returns "hello"', () => {
     expect(hello()).toBe('hello');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// goodbye
+// ---------------------------------------------------------------------------
+describe('goodbye', () => {
+  test('returns "goodbye"', () => {
+    expect(goodbye()).toBe('goodbye');
   });
 });
