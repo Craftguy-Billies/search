@@ -78,6 +78,8 @@ Then open `http://localhost:8080` in your browser.
 > **📌 Comment A:** This project was built incrementally across multiple sessions, with each mini app added as a self-contained feature. The todo list, pomodoro timer, calculator, and about page were each developed independently and later integrated into a unified collection with shared theming and navigation.
 >
 > **📌 Comment B:** All mini apps share a common design language through CSS custom properties defined in `style.css`. This makes global theme changes (colors, spacing, fonts) as simple as updating a few variable values — no need to touch each app's individual stylesheet.
+>
+> **📌 Comment C:** The JavaScript for each app is kept in separate files (`calculator.js`, `todo.js`, `pomodoro.js`, `script.js`) to maintain clear separation of concerns. Shared utility logic lives in `js/app.js`, which is tested independently with Jest.
 
 ## Tests
 
