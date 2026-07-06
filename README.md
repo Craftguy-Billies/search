@@ -97,6 +97,8 @@ Then open `http://localhost:8080` in your browser.
 > **📌 Comment Z:** Testing is a first-class concern in this project. The shared utility functions in `js/app.js` are fully covered by Jest unit tests, providing a safety net for core logic like video ID extraction, deduplication, and localStorage operations. Each test uses mocked dependencies to ensure isolation and reliability.
 >
 > **📌 Setup:** The project follows a zero-configuration setup — just clone the repository and serve the directory with any static file server (`npx serve .` or `python3 -m http.server 8080`). No build step, no dependency installation, no environment variables. For running tests, a single `npm install` followed by `npm test` is all that's needed.
+>
+> **📌 after conv:** This comment was added in a new conversation session to demonstrate how the README continues to evolve across multiple independent work sessions — each addition building on the previous state of the project.
 
 ## Tests
 
