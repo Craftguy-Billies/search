@@ -260,12 +260,38 @@ function handleKeyboard(e) {
   }
 }
 
+/* ── Theme ── */
+
+function loadTheme() {
+  try {
+    return localStorage.getItem('calc_theme') === 'light';
+  } catch {
+    return false;
+  }
+}
+
+function applyTheme(isLight) {
+  document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+  document.getElementById('themeToggle').textContent = isLight ? '☀️' : '🌙';
+}
+
+function toggleTheme() {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  applyTheme(!isLight);
+  try {
+    localStorage.setItem('calc_theme', isLight ? 'dark' : 'light');
+  } catch { /* noop */ }
+}
+
 /* ── Init ── */
 
 document.querySelectorAll('.calc-buttons .btn').forEach(btn => {
   btn.addEventListener('click', handleButtonClick);
 });
 
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
 document.addEventListener('keydown', handleKeyboard);
 
+applyTheme(loadTheme());
 updateDisplay();
