@@ -79,6 +79,7 @@ function loadTheme() {
   return localStorage.getItem(THEME_KEY) === 'light';
 }
 
+// Returns a greeting string
 function hello() {
   return 'hello';
 }
