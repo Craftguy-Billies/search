@@ -1,7 +1,11 @@
 /* ============================================
    Search Landing Page — Theme Stylesheet
    Supports dark (default) and light themes
-   ============================================ */
+   ============================================
+   This stylesheet powers the landing page,
+   about page, and related UI components.
+   All themed values are controlled via CSS
+   custom properties for easy maintainability. */
 
 :root {
   /* ── Backgrounds ── */
