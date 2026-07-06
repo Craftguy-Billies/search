@@ -1,5 +1,7 @@
 # VideoVault 🎬
 
+hello world
+
 A simple YouTube video displayer app built with vanilla JavaScript. Add YouTube URLs, view video metadata, and play videos inline.
 
 ## Features
