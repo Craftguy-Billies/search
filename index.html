@@ -32,7 +32,7 @@
 
         <h1>
             Discover what<br>
-            <span class="gradient-text">matters most</span>
+            <span class="gradient-text" id="typed-text" data-words='["matters most","you love","inspires you","means more"]'></span><span id="cursor">|</span>
         </h1>
 
         <p>
@@ -110,25 +110,6 @@
         © 2026 Search. All rights reserved.
     </footer>
 
-    <script>
-        const toggle = document.getElementById('themeToggle');
-
-        function setTheme(isLight) {
-            document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
-            toggle.textContent = isLight ? '☀️' : '🌙';
-        }
-
-        function toggleTheme() {
-            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-            setTheme(!isLight);
-            localStorage.setItem('landing_theme', isLight ? 'dark' : 'light');
-        }
-
-        // Restore saved theme
-        const saved = localStorage.getItem('landing_theme');
-        if (saved === 'light') setTheme(true);
-
-        toggle.addEventListener('click', toggleTheme);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
