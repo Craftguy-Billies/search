@@ -19,6 +19,7 @@ const state = {
 const displayEl = document.getElementById('timer-display');
 const phaseLabel = document.getElementById('phase-label');
 const progressFill = document.getElementById('progress-fill');
+const progressBarFill = document.getElementById('progress-bar-fill');
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
 const resetBtn = document.getElementById('reset-btn');
@@ -38,6 +39,7 @@ function updateDisplay() {
   displayEl.textContent = formatTime(state.timeLeft);
   const progress = 1 - state.timeLeft / state.totalTime;
   progressFill.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
+  progressBarFill.style.width = `${progress * 100}%`;
 }
 
 function updateSessionStats() {
@@ -56,13 +58,33 @@ function updateRunningClass() {
 function updateButtons() {
   startBtn.disabled = state.isRunning || state.isFinished;
   pauseBtn.disabled = !state.isRunning;
+}
 
-  if (state.isFinished) {
-    startBtn.textContent = '▶ Start';
-  } else if (state.isRunning) {
-    startBtn.textContent = '▶ Start';
-  } else {
-    startBtn.textContent = '▶ Start';
+/* ── Sound ── */
+
+function playNotificationSound() {
+  // Generates a three-note ascending chime via Web Audio API (no external files)
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const now = ctx.currentTime;
+
+    // Three-note chime: C5 → E5 → G5 (ascending major triad)
+    const freqs = [523.25, 659.25, 783.99];
+    freqs.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, now + i * 0.12);
+      gain.gain.linearRampToValueAtTime(0.25, now + i * 0.12 + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.12 + 0.5);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now + i * 0.12);
+      osc.stop(now + i * 0.12 + 0.5);
+    });
+  } catch {
+    // Audio not available — silent fallback
   }
 }
 
@@ -80,6 +102,7 @@ function tick() {
 
 function finishPhase() {
   stopTimer();
+  playNotificationSound();
 
   if (state.phase === 'focus') {
     state.sessionCount += 1;
