@@ -70,6 +70,8 @@ python3 -m http.server 8080
 Then open `http://localhost:8080` in your browser.
 
 > **💡 Tip:** All apps store their theme preference in `localStorage`. If you want to reset a theme, just clear your browser's local storage for the site, or toggle the theme back in the app's UI.
+>
+> **📝 Note:** Each app is a standalone HTML file — you can open them individually without needing a server, though some features (like favicon loading) work best when served via HTTP.
 
 ## Tests
 
