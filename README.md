@@ -81,6 +81,8 @@ Then open `http://localhost:8080` in your browser.
 > **📌 Comment B:** All mini apps share a common design language through CSS custom properties defined in `style.css`. This makes global theme changes (colors, spacing, fonts) as simple as updating a few variable values — no need to touch each app's individual stylesheet.
 >
 > **📌 Comment C:** The JavaScript for each app is kept in separate files (`calculator.js`, `todo.js`, `pomodoro.js`, `script.js`) to maintain clear separation of concerns. Shared utility logic lives in `js/app.js`, which is tested independently with Jest.
+>
+> **📌 Comment X:** This project demonstrates that vanilla JavaScript remains a powerful and practical choice for building interactive web applications without the overhead of frameworks. Every mini app follows the same architecture: a standalone HTML file that references a dedicated CSS and JS file, making each app independently deployable and maintainable.
 
 ## Tests
 
