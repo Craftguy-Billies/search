@@ -171,6 +171,33 @@ function percent() {
   }
 }
 
+/* ── Visual feedback ── */
+
+function flashButton(selector) {
+  const btn = document.querySelector(selector);
+  if (!btn) return;
+  btn.classList.add('key-press');
+  setTimeout(() => btn.classList.remove('key-press'), 150);
+}
+
+const KEY_BUTTON_MAP = {
+  '0': '[data-value="0"]', '1': '[data-value="1"]',
+  '2': '[data-value="2"]', '3': '[data-value="3"]',
+  '4': '[data-value="4"]', '5': '[data-value="5"]',
+  '6': '[data-value="6"]', '7': '[data-value="7"]',
+  '8': '[data-value="8"]', '9': '[data-value="9"]',
+  '.': '[data-value="."]',
+  Enter: '[data-action="equals"]',
+  '=': '[data-action="equals"]',
+  Backspace: '[data-action="backspace"]',
+  Escape: '[data-action="clear"]',
+  '%': '[data-action="percent"]',
+  '+': '[data-action="add"]',
+  '-': '[data-action="subtract"]',
+  '*': '[data-action="multiply"]',
+  '/': '[data-action="divide"]',
+};
+
 /* ── Event handlers ── */
 
 function handleButtonClick(e) {
@@ -215,6 +242,7 @@ function handleKeyboard(e) {
 
   if (/^[0-9]$/.test(key)) {
     e.preventDefault();
+    flashButton(KEY_BUTTON_MAP[key]);
     inputDigit(key);
     return;
   }
@@ -222,39 +250,48 @@ function handleKeyboard(e) {
   switch (key) {
     case '.':
       e.preventDefault();
+      flashButton(KEY_BUTTON_MAP[key]);
       inputDecimal();
       break;
     case 'Enter':
     case '=':
       e.preventDefault();
+      flashButton(KEY_BUTTON_MAP['Enter']);
       calculate();
       break;
     case 'Backspace':
       e.preventDefault();
+      flashButton(KEY_BUTTON_MAP[key]);
       backspace();
       break;
     case 'Escape':
       e.preventDefault();
+      flashButton(KEY_BUTTON_MAP[key]);
       clearAll();
       break;
     case '%':
       e.preventDefault();
+      flashButton(KEY_BUTTON_MAP[key]);
       percent();
       break;
     case '+':
       e.preventDefault();
+      flashButton(KEY_BUTTON_MAP[key]);
       setOperation('add');
       break;
     case '-':
       e.preventDefault();
+      flashButton(KEY_BUTTON_MAP[key]);
       setOperation('subtract');
       break;
     case '*':
       e.preventDefault();
+      flashButton(KEY_BUTTON_MAP[key]);
       setOperation('multiply');
       break;
     case '/':
       e.preventDefault();
+      flashButton(KEY_BUTTON_MAP[key]);
       setOperation('divide');
       break;
   }

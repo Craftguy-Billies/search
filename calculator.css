@@ -215,8 +215,19 @@ body {
   position: relative;
 }
 
-.btn:active {
+.btn:active,
+.btn.key-press {
   transform: scale(0.94);
+}
+
+@keyframes key-flash {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.6); }
+  100% { filter: brightness(1); }
+}
+
+.btn.key-press {
+  animation: key-flash 0.15s ease;
 }
 
 /* ── Number buttons ── */
