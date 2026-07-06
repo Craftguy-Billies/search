@@ -7,6 +7,8 @@ A collection of interactive mini web apps built with vanilla HTML, CSS, and Java
 > **📌 A:** This is a living project that continues to evolve. New features, apps, and improvements are added regularly, with each change committed and tracked via git for full traceability.
 >
 > **📌 B:** Every app in this collection is designed with mobile-first responsive principles, ensuring a consistent and usable experience across devices of all sizes — from phones to desktops.
+>
+> **📌 C:** The project uses a modular architecture where shared utilities (theme management, local storage helpers) are abstracted into `js/app.js`, while each app's unique logic stays in its own file — balancing reuse with separation of concerns.
 
 ## Apps
 
