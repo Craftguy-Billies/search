@@ -514,9 +514,8 @@
 
 <div class="toast" id="toast"></div>
 
+<script src="js/app.js"></script>
 <script>
-    const STORAGE_KEY = 'videovault_list';
-    const THEME_KEY = 'videovault_theme';
     let videos = [];
 
     const grid = document.getElementById('videoGrid');
@@ -534,52 +533,11 @@
     const closePlayer = document.getElementById('closePlayer');
     const toastEl = document.getElementById('toast');
 
-    function extractVideoId(input) {
-        const patterns = [
-            /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
-            /^([a-zA-Z0-9_-]{11})$/
-        ];
-        for (const p of patterns) {
-            const m = input.match(p);
-            if (m) return m[1];
-        }
-        return null;
-    }
-
     function showToast(msg, duration = 3000) {
         toastEl.textContent = msg;
         toastEl.classList.add('show');
         clearTimeout(toastEl._hide);
         toastEl._hide = setTimeout(() => toastEl.classList.remove('show'), duration);
-    }
-
-    function timeAgo(dateStr) {
-        const d = new Date(dateStr);
-        const now = new Date();
-        const diff = (now - d) / 1000;
-        if (diff < 60) return 'Just now';
-        if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
-        if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
-        if (diff < 2592000) return Math.floor(diff / 86400) + 'd ago';
-        return d.toLocaleDateString();
-    }
-
-    async function fetchVideoInfo(videoId) {
-        const url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
-        const resp = await fetch(url);
-        if (!resp.ok) throw new Error('Video not found');
-        return await resp.json();
-    }
-
-    function save() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
-    }
-
-    function load() {
-        try {
-            const data = localStorage.getItem(STORAGE_KEY);
-            videos = data ? JSON.parse(data) : [];
-        } catch { videos = []; }
     }
 
     function render() {
@@ -649,7 +607,7 @@
             return;
         }
 
-        if (videos.some(v => v.id === id)) {
+        if (isDuplicate(videos, id)) {
             showToast('⚠️ Video already in your list', 2000);
             return;
         }
@@ -657,16 +615,9 @@
         loading.classList.add('active');
         try {
             const info = await fetchVideoInfo(id);
-            const video = {
-                id: id,
-                title: info.title || 'Untitled',
-                author: info.author_name || 'Unknown',
-                thumbnail: info.thumbnail_url || `https://img.youtube.com/vi/${id}/mqdefault.jpg`,
-                published: new Date().toISOString(),
-                duration: ''
-            };
-            videos.unshift(video);
-            save();
+            const video = buildVideoObject(id, info);
+            videos = addVideoToList(videos, video);
+            saveVideos(videos);
             render();
             showToast('✅ Video added!', 2000);
             searchInput.value = '';
@@ -678,8 +629,8 @@
     }
 
     function removeVideo(index) {
-        videos.splice(index, 1);
-        save();
+        videos = removeVideoFromList(videos, index);
+        saveVideos(videos);
         render();
         showToast('🗑 Video removed', 1500);
     }
@@ -688,7 +639,7 @@
         if (videos.length === 0) return;
         if (confirm('Remove all videos?')) {
             videos = [];
-            save();
+            saveVideos(videos);
             render();
             playerSection.classList.remove('active');
             playerIframe.src = '';
@@ -709,7 +660,7 @@
                 success++;
             } catch {}
         }
-        save();
+        saveVideos(videos);
         render();
         loading.classList.remove('active');
         showToast(`🔄 Refreshed ${success} video(s)`, 2000);
@@ -727,17 +678,16 @@
 
     function toggleTheme() {
         const isLight = document.documentElement.classList.toggle('light');
-        localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark');
+        saveTheme(isLight);
         themeToggle.textContent = isLight ? '🌙' : '☀️';
     }
 
     // Restore saved theme
-    const savedTheme = localStorage.getItem(THEME_KEY);
-    if (savedTheme === 'light') applyTheme(true);
+    if (loadTheme()) applyTheme(true);
 
     themeToggle.addEventListener('click', toggleTheme);
 
-    load();
+    videos = loadVideos();
     render();
 </script>
 </body>
