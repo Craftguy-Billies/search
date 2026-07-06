@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro · Focus Timer</title>
+  <link rel="stylesheet" href="pomodoro.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-left">
+        <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="7"/>
+          <path d="M12 8v4l2.5 2.5"/>
+          <path d="M12 5V3"/>
+          <path d="M12 21v-2"/>
+          <path d="M5 12H3"/>
+          <path d="M21 12h-2"/>
+          <path d="M7.05 7.05L5.64 5.64"/>
+          <path d="M18.36 18.36l-1.41-1.41"/>
+        </svg>
+        <h1>Pomodoro</h1>
+      </div>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">🌙</button>
+    </header>
+
+    <div class="timer-container">
+      <div class="progress-ring">
+        <svg viewBox="0 0 220 220">
+          <circle class="progress-bg" cx="110" cy="110" r="100"/>
+          <circle class="progress-fill" id="progress-fill" cx="110" cy="110" r="100"
+            stroke-dasharray="628.32" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-display" id="timer-display">25:00</div>
+      </div>
+
+      <div class="phase-label" id="phase-label">Focus</div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-primary" id="start-btn">▶ Start</button>
+      <button class="btn btn-secondary" id="pause-btn" disabled>⏸ Pause</button>
+      <button class="btn btn-ghost" id="reset-btn">↺ Reset</button>
+    </div>
+
+    <div class="session-stats">
+      <span id="session-count">#0</span>
+    </div>
+  </div>
+
+  <script src="pomodoro.js"></script>
+</body>
+</html>
