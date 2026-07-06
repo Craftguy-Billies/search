@@ -4,6 +4,8 @@ hello world
 
 A collection of interactive mini web apps built with vanilla HTML, CSS, and JavaScript. Features dark/light theme support, responsive design, localStorage persistence, and keyboard accessibility.
 
+> **📌 A:** This is a living project that continues to evolve. New features, apps, and improvements are added regularly, with each change committed and tracked via git for full traceability.
+
 ## Apps
 
 ### 🔍 Search Landing Page
