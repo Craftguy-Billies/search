@@ -16,6 +16,9 @@ const state = {
   intervalId: null,
 };
 
+const HISTORY_KEY = 'pomodoro_history';
+const MAX_HISTORY = 50;
+
 const displayEl = document.getElementById('timer-display');
 const phaseLabel = document.getElementById('phase-label');
 const progressFill = document.getElementById('progress-fill');
@@ -26,6 +29,8 @@ const resetBtn = document.getElementById('reset-btn');
 const sessionCountEl = document.getElementById('session-count');
 const themeToggle = document.getElementById('theme-toggle');
 const appEl = document.querySelector('.app');
+const historyListEl = document.getElementById('history-list');
+const clearHistoryBtn = document.getElementById('clear-history-btn');
 
 /* ── Display ── */
 
@@ -58,6 +63,64 @@ function updateRunningClass() {
 function updateButtons() {
   startBtn.disabled = state.isRunning || state.isFinished;
   pauseBtn.disabled = !state.isRunning;
+}
+
+/* ── Session History ── */
+
+function loadHistory() {
+  try {
+    const data = localStorage.getItem(HISTORY_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveHistory(entries) {
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(entries));
+  } catch { /* noop */ }
+}
+
+function addHistoryEntry() {
+  const entries = loadHistory();
+  entries.unshift({ timestamp: new Date().toISOString() });
+  if (entries.length > MAX_HISTORY) entries.length = MAX_HISTORY;
+  saveHistory(entries);
+  renderHistory(entries);
+}
+
+function clearHistory() {
+  saveHistory([]);
+  renderHistory([]);
+}
+
+function timeAgo(isoString) {
+  const diff = Math.floor((Date.now() - new Date(isoString).getTime()) / 1000);
+  if (diff < 60) return 'just now';
+  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
+  return new Date(isoString).toLocaleDateString();
+}
+
+function formatTimeAMPM(isoString) {
+  const d = new Date(isoString);
+  return d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+}
+
+function renderHistory(entries) {
+  if (!entries || entries.length === 0) {
+    historyListEl.innerHTML = '<div class="history-empty">No sessions yet</div>';
+    return;
+  }
+
+  historyListEl.innerHTML = entries.slice(0, 20).map(e => `
+    <div class="history-entry" title="${new Date(e.timestamp).toLocaleString()}">
+      <span class="history-entry-time">${timeAgo(e.timestamp)}</span>
+      <span class="history-entry-label">${formatTimeAMPM(e.timestamp)}</span>
+    </div>
+  `).join('');
 }
 
 /* ── Sound ── */
@@ -107,6 +170,7 @@ function finishPhase() {
   if (state.phase === 'focus') {
     state.sessionCount += 1;
     updateSessionStats();
+    addHistoryEntry();
     state.phase = 'break';
     state.totalTime = BREAK_TIME;
     state.timeLeft = BREAK_TIME;
@@ -205,6 +269,7 @@ startBtn.addEventListener('click', startTimer);
 pauseBtn.addEventListener('click', pauseTimer);
 resetBtn.addEventListener('click', resetTimer);
 themeToggle.addEventListener('click', toggleTheme);
+clearHistoryBtn.addEventListener('click', clearHistory);
 
 updateDisplay();
 updatePhaseLabel();
@@ -212,3 +277,4 @@ updateSessionStats();
 updateRunningClass();
 updateButtons();
 applyTheme(loadTheme());
+renderHistory(loadHistory());
