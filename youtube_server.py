@@ -122,6 +122,8 @@ def extract_info(url):
 @app.route("/api/info", methods=["POST"])
 def api_info():
     data = request.get_json(force=True)
+    if not isinstance(data, dict):
+        return jsonify({"error": "Invalid JSON body"}), 400
     url = data.get("url", "").strip()
     if not url:
         return jsonify({"error": "No URL provided"}), 400

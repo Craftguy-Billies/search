@@ -68,7 +68,8 @@ function formatSize(bytes) {
   if (!bytes) return '';
   const mb = bytes / 1024 / 1024;
   if (mb >= 1024) return (mb / 1024).toFixed(1) + ' GB';
-  return mb.toFixed(0) + ' MB';
+  if (mb < 1) return Math.round(bytes / 1024) + ' KB';
+  return mb.toFixed(1) + ' MB';
 }
 
 /* ── Fetch video info ── */
