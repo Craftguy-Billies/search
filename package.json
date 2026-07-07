@@ -8,6 +8,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "ytdl-core": "^4.11.5"
@@ -17,6 +18,8 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "testMatch": ["**/js/**/*.test.js"]
+    "testMatch": [
+      "**/js/**/*.test.js"
+    ]
   }
 }
