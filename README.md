@@ -142,6 +142,8 @@ Then open `http://localhost:8080` in your browser.
 >
 > **📌 T2-msg1:** r2-msg1
 >
+> **📌 T2-msg3:** r2-msg3
+>
 > **📌 T3-A:** first
 >
 > **📌 T3-B:** second
