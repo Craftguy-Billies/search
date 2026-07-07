@@ -212,3 +212,26 @@ A cross-platform TODO application built with Flutter and Material Design 3.
 cd flutter_todo_app
 flutter run
 ```
+
+---
+
+### 🎬 `<yt-player>` Web Component (`yt-player.js`)
+
+A reusable YouTube video displayer web component built with the Custom Elements API and Shadow DOM. Drop `<yt-player playlist history></yt-player>` into any HTML page.
+
+- **Isolated styles** — Shadow DOM prevents conflicts with host page CSS
+- **Theme-aware** — inherits the project's CSS custom properties (`--card-bg`, `--text-primary`, etc.) for automatic dark/light mode
+- **Attribute-driven** — `playlist` and `history` attributes toggle sidebar panels
+- **Multiple instances** — each `<yt-player>` has its own state and YouTube player
+- **Programmatic API** — `loadVideo(id)`, `addToPlaylist(id)`, `videoId`, `playlistItems`, `historyItems`
+- **Custom events** — dispatches `play` events with `{ detail: { id } }`
+- **localStorage** — playlists and history persist across sessions
+- **oEmbed metadata** — no API key needed
+
+**Files:** `yt-player.js`, `yt-player-demo.html`
+
+**Usage:**
+```html
+<script src="yt-player.js"></script>
+<yt-player playlist history></yt-player>
+```

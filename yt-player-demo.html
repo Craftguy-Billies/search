@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;yt-player&gt; Demo</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .demo-header h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .demo-header h1 span { color: #ee5a24; }
+
+    .demo-header p {
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+
+    .demo-section {
+      margin-bottom: 48px;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    .demo-section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .demo-code {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      color: var(--text-secondary);
+    }
+
+    .demo-code .tag { color: #ee5a24; }
+    .demo-code .attr { color: #74b9ff; }
+    .demo-code .val  { color: #fdcb6e; }
+    .demo-code .com  { color: #636e72; }
+
+    .demo-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .demo-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="ytd-page">
+  <div class="bg-gradient"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grid-overlay"></div>
+
+  <nav>
+    <div class="logo">✦ Search</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="yt-player-demo.html" class="active">&lt;yt-player&gt;</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="demo-header">
+      <h1>&lt;<span>yt-player</span>&gt;</h1>
+      <p>Reusable YouTube video displayer web component — drop it anywhere</p>
+    </div>
+
+    <!-- ── Basic usage ── -->
+    <div class="demo-section">
+      <h2>Minimal</h2>
+      <div class="demo-code">
+        <span class="tag">&lt;yt-player</span><span class="attr"> playlist</span><span class="tag">&gt;</span><span class="tag">&lt;/yt-player&gt;</span>
+      </div>
+      <yt-player playlist></yt-player>
+    </div>
+
+    <!-- ── Full featured ── -->
+    <div class="demo-section">
+      <h2>Full featured</h2>
+      <div class="demo-code">
+        <span class="tag">&lt;yt-player</span><span class="attr"> playlist history</span><span class="tag">&gt;</span><span class="tag">&lt;/yt-player&gt;</span>
+      </div>
+      <yt-player playlist history></yt-player>
+    </div>
+
+    <!-- ── Multiple instances ── -->
+    <div class="demo-section">
+      <h2>Multiple instances</h2>
+      <div class="demo-code">
+        <span class="com">&lt;!-- Each &lt;yt-player&gt; has its own state and player --&gt;</span>
+      </div>
+      <div class="demo-grid">
+        <yt-player playlist></yt-player>
+        <yt-player playlist></yt-player>
+      </div>
+    </div>
+
+    <!-- ── API ── -->
+    <div class="demo-section">
+      <h2>JavaScript API</h2>
+      <div class="demo-code">
+        <span class="com">// Get a reference</span><br>
+        <span style="color:#81ecec;">const</span> player <span style="color:#636e72;">=</span> document.querySelector(<span class="val">'yt-player'</span>);<br><br>
+        <span class="com">// Load a video programmatically</span><br>
+        player.loadVideo(<span class="val">'dQw4w9WgXcQ'</span>);<br><br>
+        <span class="com">// Add to playlist</span><br>
+        player.addToPlaylist(<span class="val">'jNQXAC9IVRw'</span>);<br><br>
+        <span class="com">// Read state</span><br>
+        console.log(player.videoId);<br>
+        console.log(player.playlistItems);<br>
+        console.log(player.historyItems);<br><br>
+        <span class="com">// Listen for events</span><br>
+        player.addEventListener(<span class="val">'play'</span>, <span style="color:#81ecec;">e</span> <span style="color:#636e72;">=></span> <span style="color:#fdcb6e;">console</span>.log(<span class="val">'Playing:'</span>, e.detail.id));
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Search. All rights reserved.
+  </footer>
+
+  <script>
+    // Theme toggle (shared across all pages)
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      if (!toggle) return;
+
+      function setTheme(isLight) {
+        document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+        toggle.textContent = isLight ? '☀️' : '🌙';
+      }
+
+      const saved = localStorage.getItem('landing_theme');
+      if (saved === 'light') setTheme(true);
+
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        setTheme(!isLight);
+        localStorage.setItem('landing_theme', isLight ? 'dark' : 'light');
+      });
+    });
+  </script>
+
+  <script src="yt-player.js"></script>
+</body>
+</html>
