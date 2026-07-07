@@ -128,6 +128,8 @@ Then open `http://localhost:8080` in your browser.
 > **📌 T3-A:** first
 >
 > **📌 T3-B:** second
+>
+> **📌 T3-C:** third
 
 ## Tests
 
