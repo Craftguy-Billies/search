@@ -65,6 +65,18 @@ Precision lap timer with millisecond accuracy.
 
 **Files:** `stopwatch.html`, `stopwatch.css`, `stopwatch.js`
 
+### 📓 Notebook
+Simple note-taking app with search and auto-save.
+
+- Create, edit, and delete notes
+- Auto-save with debounce (400ms)
+- Full-text search across titles and content
+- Empty notes are automatically removed
+- Keyboard shortcuts: N (new note), Escape (back to list)
+- Dark/light theme toggle
+
+**Files:** `notes.html`, `notes.css`, `notes.js`
+
 ### ℹ️ About
 Simple informational page with navigation, centered layout, and a dark mode toggle.
 
@@ -126,6 +138,8 @@ npm test
 ├── calculator.html     Calculator app
 ├── todo.html           Todo list app
 ├── pomodoro.html       Pomodoro timer
+├── stopwatch.html      Stopwatch
+├── notes.html          Notebook
 ├── about.html          About page
 ├── style.css           Global styles (themes, landing page)
 ├── script.js           Typing animation + theme toggle
@@ -138,6 +152,9 @@ npm test
 ├── stopwatch.html      Stopwatch app
 ├── stopwatch.css       Stopwatch styles
 ├── stopwatch.js        Stopwatch logic
+├── notes.html          Notebook app
+├── notes.css           Notebook styles
+├── notes.js            Notebook logic
 ├── favicon.svg         App favicon
 ├── js/
 │   ├── app.js          Core logic (pure functions, no DOM dependency)
