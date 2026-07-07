@@ -125,6 +125,8 @@ Then open `http://localhost:8080` in your browser.
 >
 > **📌 T2-A:** first
 >
+> **📌 T2-B:** second
+>
 > **📌 T3-A:** first
 >
 > **📌 T3-B:** second
