@@ -59,6 +59,18 @@ Simple informational page with navigation, centered layout, and a dark mode togg
 
 **Files:** `about.html`
 
+### 🎬 YouTube Downloader
+Download YouTube videos in various formats and qualities via a clean web interface.
+
+- Paste any YouTube URL and fetch available formats
+- Choose from multiple quality options (4K, 1080p, 720p, audio-only, etc.)
+- Powered by yt-dlp for reliable extraction and downloading
+- Dark/light theme toggle with persisted preference
+
+**Files:** `youtube-server.py`, `youtube-downloader.html`, `youtube-downloader.css`, `youtube-downloader.js`
+
+> **⚡ Run:** Start the server with `python3 youtube_server.py` and open `http://localhost:5000`.
+
 ## Features
 
 - **Dark/light themes** across all apps — preferences saved to localStorage
@@ -111,23 +123,27 @@ npm test
 ## Project structure
 
 ```
-├── index.html          Search landing page
-├── calculator.html     Calculator app
-├── todo.html           Todo list app
-├── pomodoro.html       Pomodoro timer
-├── about.html          About page
-├── style.css           Global styles (themes, landing page)
-├── script.js           Typing animation + theme toggle
-├── calculator.css      Calculator styles
-├── calculator.js       Calculator logic
-├── todo.css            Todo list styles
-├── todo.js             Todo list logic
-├── pomodoro.css        Pomodoro styles
-├── pomodoro.js         Pomodoro logic
-├── favicon.svg         App favicon
+├── index.html               Search landing page
+├── calculator.html          Calculator app
+├── todo.html                Todo list app
+├── pomodoro.html            Pomodoro timer
+├── about.html               About page
+├── youtube-downloader.html  YouTube downloader frontend
+├── youtube_server.py        YouTube downloader server (Flask + yt-dlp)
+├── style.css                Global styles (themes, landing page)
+├── script.js                Typing animation + theme toggle
+├── calculator.css           Calculator styles
+├── calculator.js            Calculator logic
+├── todo.css                 Todo list styles
+├── todo.js                  Todo list logic
+├── pomodoro.css             Pomodoro styles
+├── pomodoro.js              Pomodoro logic
+├── youtube-downloader.css   YouTube downloader styles
+├── youtube-downloader.js    YouTube downloader frontend logic
+├── favicon.svg              App favicon
 ├── js/
-│   ├── app.js          Core logic (pure functions, no DOM dependency)
-│   └── app.test.js     Jest unit tests
-├── package.json        Node project configuration
-└── README.md           This file
+│   ├── app.js               Core logic (pure functions, no DOM dependency)
+│   └── app.test.js          Jest unit tests
+├── package.json             Node project configuration
+└── README.md                This file
 ```
