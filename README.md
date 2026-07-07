@@ -54,6 +54,17 @@ Focus timer with 25-minute work / 5-minute break cycling.
 
 **Files:** `pomodoro.html`, `pomodoro.css`, `pomodoro.js`
 
+### ⏱️ Stopwatch
+Precision lap timer with millisecond accuracy.
+
+- Start / Stop / Lap / Reset controls
+- Lap history with automatic best-lap highlighting
+- Centisecond precision display (00:00.00)
+- Keyboard shortcuts: Space (start/stop), L (lap)
+- Dark/light theme toggle
+
+**Files:** `stopwatch.html`, `stopwatch.css`, `stopwatch.js`
+
 ### ℹ️ About
 Simple informational page with navigation, centered layout, and a dark mode toggle.
 
@@ -124,6 +135,9 @@ npm test
 ├── todo.js             Todo list logic
 ├── pomodoro.css        Pomodoro styles
 ├── pomodoro.js         Pomodoro logic
+├── stopwatch.html      Stopwatch app
+├── stopwatch.css       Stopwatch styles
+├── stopwatch.js        Stopwatch logic
 ├── favicon.svg         App favicon
 ├── js/
 │   ├── app.js          Core logic (pure functions, no DOM dependency)

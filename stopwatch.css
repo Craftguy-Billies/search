@@ -1,0 +1,341 @@
+/* ============================================
+   Stopwatch — Theme Stylesheet
+   ============================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ── Dark theme (default) ── */
+  --bg: #0f0e17;
+  --surface: #1a1a2e;
+  --surface-border: rgba(255, 255, 255, 0.06);
+  --text: #fffffe;
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-dim: rgba(255, 255, 255, 0.25);
+  --accent: #6c5ce7;
+  --accent-glow: rgba(108, 92, 231, 0.3);
+  --accent-muted: rgba(108, 92, 231, 0.15);
+  --btn-start-bg: #00b894;
+  --btn-start-hover: #00a381;
+  --btn-start-text: #fff;
+  --btn-lap-bg: rgba(255, 255, 255, 0.06);
+  --btn-lap-hover: rgba(255, 255, 255, 0.12);
+  --btn-lap-text: rgba(255, 255, 255, 0.7);
+  --btn-reset-text: rgba(255, 255, 255, 0.4);
+  --btn-reset-hover: rgba(255, 255, 255, 0.08);
+  --theme-btn-bg: rgba(255, 255, 255, 0.06);
+  --theme-btn-hover: rgba(255, 255, 255, 0.12);
+  --lap-entry-bg: rgba(255, 255, 255, 0.04);
+  --lap-entry-border: rgba(255, 255, 255, 0.06);
+  --lap-best-color: #00b894;
+  --transition: 0.25s ease;
+}
+
+/* ── Light theme ── */
+:root[data-theme="light"] {
+  --bg: #f8f7fc;
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-border: rgba(0, 0, 0, 0.06);
+  --text: #1a1a2e;
+  --text-secondary: rgba(0, 0, 0, 0.5);
+  --text-dim: rgba(0, 0, 0, 0.2);
+  --accent: #6c5ce7;
+  --accent-glow: rgba(108, 92, 231, 0.2);
+  --accent-muted: rgba(108, 92, 231, 0.08);
+  --btn-start-bg: #00b894;
+  --btn-start-hover: #00a381;
+  --btn-start-text: #fff;
+  --btn-lap-bg: rgba(0, 0, 0, 0.04);
+  --btn-lap-hover: rgba(0, 0, 0, 0.08);
+  --btn-lap-text: rgba(0, 0, 0, 0.55);
+  --btn-reset-text: rgba(0, 0, 0, 0.3);
+  --btn-reset-hover: rgba(0, 0, 0, 0.05);
+  --theme-btn-bg: rgba(0, 0, 0, 0.04);
+  --theme-btn-hover: rgba(0, 0, 0, 0.08);
+  --lap-entry-bg: rgba(0, 0, 0, 0.03);
+  --lap-entry-border: rgba(0, 0, 0, 0.06);
+  --lap-best-color: #00b894;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition);
+}
+
+.app {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── Header ── */
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--text-secondary);
+}
+
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: var(--theme-btn-bg);
+  color: var(--text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), color var(--transition);
+  user-select: none;
+}
+
+.theme-btn:hover {
+  background: var(--theme-btn-hover);
+  color: var(--text);
+}
+
+/* ── Timer Display ── */
+
+.timer-display {
+  font-size: 64px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 48px;
+  color: var(--text);
+  transition: color var(--transition);
+}
+
+/* ── Controls ── */
+
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition), opacity var(--transition),
+    transform var(--transition), color var(--transition);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-start {
+  background: var(--btn-start-bg);
+  color: var(--btn-start-text);
+  min-width: 100px;
+}
+
+.btn-start:hover:not(:disabled) {
+  background: var(--btn-start-hover);
+}
+
+.btn-lap {
+  background: var(--btn-lap-bg);
+  color: var(--btn-lap-text);
+  min-width: 90px;
+}
+
+.btn-lap:hover:not(:disabled) {
+  background: var(--btn-lap-hover);
+}
+
+.btn-reset {
+  background: transparent;
+  color: var(--btn-reset-text);
+  min-width: 90px;
+}
+
+.btn-reset:hover:not(:disabled) {
+  background: var(--btn-reset-hover);
+}
+
+/* ── Laps Header ── */
+
+.laps-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.laps-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-dim);
+  transition: color var(--transition);
+}
+
+#lap-count {
+  font-size: 12px;
+  color: var(--text-dim);
+  transition: color var(--transition);
+}
+
+/* ── Laps List ── */
+
+.laps-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.laps-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.laps-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.laps-list::-webkit-scrollbar-thumb {
+  background: var(--btn-lap-bg);
+  border-radius: 3px;
+}
+
+.laps-empty {
+  text-align: center;
+  padding: 24px 12px;
+  font-size: 13px;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.lap-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--lap-entry-bg);
+  border: 1px solid var(--lap-entry-border);
+  font-size: 14px;
+  color: var(--text-secondary);
+  transition: background var(--transition), border-color var(--transition),
+    color var(--transition);
+  animation: lapSlideIn 0.2s ease;
+}
+
+@keyframes lapSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lap-entry-best {
+  color: var(--lap-best-color);
+  font-weight: 600;
+}
+
+.lap-entry-best .lap-entry-time {
+  color: var(--lap-best-color);
+}
+
+.lap-entry-num {
+  font-variant-numeric: tabular-nums;
+}
+
+.lap-entry-time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+  .app {
+    padding: 20px;
+  }
+
+  header {
+    margin-bottom: 36px;
+  }
+
+  .timer-display {
+    font-size: 48px;
+    letter-spacing: 2px;
+    margin-bottom: 36px;
+  }
+
+  .controls {
+    gap: 8px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .btn-start {
+    min-width: 80px;
+  }
+
+  .btn-lap,
+  .btn-reset {
+    min-width: 70px;
+  }
+}
