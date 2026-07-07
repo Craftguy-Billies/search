@@ -223,6 +223,37 @@ const YT_PLAYER_STYLES = `
 
   .ytp-clear-btn:hover { color: var(--ytp-error); background: rgba(255,68,68,0.06); }
   .ytp-clear-btn.visible { display: block; }
+
+  /* ── Footer ── */
+  .ytp-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-top: 1px solid var(--ytp-border);
+    font-size: 11px;
+    color: var(--ytp-text-dim);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ytp-footer a {
+    color: var(--ytp-accent);
+    text-decoration: none;
+  }
+
+  .ytp-footer a:hover { text-decoration: underline; }
+
+  .ytp-footer-stats {
+    display: flex;
+    gap: 12px;
+  }
+
+  .ytp-footer-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
 `;
 
 class YTPlayer extends HTMLElement {
@@ -288,6 +319,13 @@ class YTPlayer extends HTMLElement {
             </div>
           </div>
         </div>
+        <div class="ytp-footer">
+          <span>Powered by <a href="https://developers.google.com/youtube/iframe_api_reference" target="_blank" rel="noopener">YouTube IFrame API</a></span>
+          <div class="ytp-footer-stats">
+            <span id="footerPlaylistCount">📋 0</span>
+            <span id="footerHistoryCount">🕐 0</span>
+          </div>
+        </div>
       </div>
     `;
   }
@@ -333,6 +371,8 @@ class YTPlayer extends HTMLElement {
       clearPlaylist: s.querySelector('[data-action="clear-playlist"]'),
       clearHistory: s.querySelector('[data-action="clear-history"]'),
       body: s.querySelector('.ytp-body'),
+      footerPlaylistCount: s.querySelector('#footerPlaylistCount'),
+      footerHistoryCount: s.querySelector('#footerHistoryCount'),
     };
   }
 
@@ -466,7 +506,16 @@ class YTPlayer extends HTMLElement {
     const days = Math.floor(hrs / 24); return `${days}d ago`;
   }
 
-  #render() { this.#renderList('playlist'); this.#renderList('history'); }
+  #render() {
+    this.#renderList('playlist');
+    this.#renderList('history');
+    this.#updateFooterStats();
+  }
+
+  #updateFooterStats() {
+    this.#els.footerPlaylistCount.textContent = `📋 ${this.#playlist.length}`;
+    this.#els.footerHistoryCount.textContent = `🕐 ${this.#history.length}`;
+  }
 
   #renderList(type) {
     const items = type === 'playlist' ? this.#playlist : this.#history;
