@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World — Search</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hello-section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hello-section h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+        .hello-section p {
+            font-size: 1.4rem;
+            color: var(--text-secondary, #94a3b8);
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+
+    <nav>
+        <div class="logo">✦ Search</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="hello.html" style="font-weight: 600;">Hello</a>
+            <a href="about.html">About</a>
+            <a href="calculator.html">Calculator</a>
+            <a href="todo.html">Todo</a>
+            <a href="pomodoro.html">Pomodoro</a>
+            <a href="stopwatch.html">Stopwatch</a>
+            <a href="notes.html">Notes</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+            <a href="#" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <section class="hello-section">
+        <h1>👋 Hello, World!</h1>
+        <p>Welcome to my first page. This is a simple hello world page built with the same design language as the rest of the app.</p>
+    </section>
+
+    <footer>
+        © 2026 Search. All rights reserved.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
