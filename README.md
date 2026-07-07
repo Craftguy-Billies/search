@@ -124,6 +124,10 @@ Then open `http://localhost:8080` in your browser.
 > **📌 after conv:** This comment was added in a new conversation session to demonstrate how the README continues to evolve across multiple independent work sessions — each addition building on the previous state of the project.
 >
 > **📌 T2-A:** first
+>
+> **📌 T3-A:** first
+>
+> **📌 T3-B:** second
 
 ## Tests
 
