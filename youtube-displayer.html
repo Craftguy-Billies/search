@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Player — VideoVault</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="youtube-displayer.css">
+</head>
+<body class="ytd-page">
+  <div class="bg-gradient"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grid-overlay"></div>
+
+  <nav>
+    <div class="logo">✦ Search</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculator.html">Calculator</a>
+      <a href="todo.html">Todo</a>
+      <a href="pomodoro.html">Pomodoro</a>
+      <a href="stopwatch.html">Stopwatch</a>
+      <a href="notes.html">Notes</a>
+      <a href="yt-downloader.html">Downloader</a>
+      <a href="youtube-displayer.html" class="active">YouTube</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="ytd-header">
+      <div class="ytd-badge">🎬 New App</div>
+      <h1>YouTube <span class="gradient-text">Player</span></h1>
+      <p>Paste any YouTube link to play videos, build playlists, and track your watch history</p>
+    </div>
+
+    <div class="ytd-input-section">
+      <div class="ytd-input-group">
+        <input type="url" id="ytdUrl" placeholder="Paste YouTube URL or video ID…" autocomplete="off" spellcheck="false">
+        <button class="btn btn-primary" id="ytdPlayBtn">▶ Play</button>
+        <button class="btn btn-secondary" id="ytdAddBtn">+ Add</button>
+      </div>
+      <div class="ytd-error" id="ytdError"></div>
+    </div>
+
+    <div class="ytd-layout">
+      <div class="ytd-player-section">
+        <div class="ytd-player-wrapper">
+          <div id="ytdPlayer"></div>
+          <div class="ytd-placeholder" id="ytdPlaceholder">
+            <div class="ytd-placeholder-icon">🎬</div>
+            <h3>No video loaded</h3>
+            <p>Paste a YouTube URL above and click <strong>Play</strong></p>
+          </div>
+        </div>
+        <div class="ytd-now-playing" id="ytdNowPlaying" style="display:none">
+          <img id="ytdNowThumb" alt="" loading="lazy">
+          <div class="ytd-now-info">
+            <div class="ytd-now-title" id="ytdNowTitle"></div>
+            <div class="ytd-now-channel" id="ytdNowChannel"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ytd-sidebar">
+        <div class="ytd-tabs">
+          <button class="ytd-tab active" data-tab="playlist">📋 Playlist</button>
+          <button class="ytd-tab" data-tab="history">🕐 History</button>
+        </div>
+
+        <div class="ytd-tab-content active" id="ytdPlaylistTab">
+          <div class="ytd-list" id="ytdPlaylistList">
+            <div class="ytd-empty">Playlist is empty — add some videos!</div>
+          </div>
+          <button class="ytd-clear-btn" id="ytdClearPlaylist">Clear All</button>
+        </div>
+
+        <div class="ytd-tab-content" id="ytdHistoryTab">
+          <div class="ytd-list" id="ytdHistoryList">
+            <div class="ytd-empty">No watch history yet</div>
+          </div>
+          <button class="ytd-clear-btn" id="ytdClearHistory">Clear All</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Search. All rights reserved.
+  </footer>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="youtube-displayer.js"></script>
+  <script>
+    // Theme toggle (shared across all pages)
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      if (!toggle) return;
+
+      function setTheme(isLight) {
+        document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+        toggle.textContent = isLight ? '☀️' : '🌙';
+      }
+
+      const saved = localStorage.getItem('landing_theme');
+      if (saved === 'light') setTheme(true);
+
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        setTheme(!isLight);
+        localStorage.setItem('landing_theme', isLight ? 'dark' : 'light');
+      });
+    });
+  </script>
+</body>
+</html>

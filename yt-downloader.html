@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Downloader — VideoVault</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="yt-downloader.css">
+</head>
+<body class="yt-page">
+  <div class="bg-gradient"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grid-overlay"></div>
+
+  <nav>
+    <div class="logo">✦ Search</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculator.html">Calculator</a>
+      <a href="todo.html">Todo</a>
+      <a href="pomodoro.html">Pomodoro</a>
+      <a href="stopwatch.html">Stopwatch</a>
+      <a href="notes.html">Notes</a>
+      <a href="yt-downloader.html" class="active">Downloader</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="yt-header">
+      <div class="yt-badge">⬇️ New Tool</div>
+      <h1>YouTube <span class="gradient-text">Downloader</span></h1>
+      <p>Paste any YouTube link to fetch formats and download videos</p>
+    </div>
+
+    <div class="yt-input-section">
+      <div class="yt-input-group">
+        <input type="url" id="ytUrl" placeholder="Paste YouTube URL here…" autocomplete="url" spellcheck="false">
+        <button class="btn btn-primary" id="ytFetchBtn">Fetch Video</button>
+      </div>
+      <div class="yt-error" id="ytError"></div>
+    </div>
+
+    <div class="yt-loading" id="ytLoading">
+      <div class="yt-spinner"></div>
+      <p>Fetching video information…</p>
+    </div>
+
+    <div class="yt-video-card" id="ytVideoCard">
+      <img class="yt-video-thumb" id="ytThumb" alt="Video thumbnail" loading="lazy">
+      <div class="yt-video-body">
+        <h2 class="yt-video-title" id="ytTitle"></h2>
+        <div class="yt-video-meta">
+          <span id="ytAuthor">🎤</span>
+          <span class="yt-meta-divider">·</span>
+          <span id="ytDuration">⏱️</span>
+          <span class="yt-meta-divider">·</span>
+          <span id="ytFormatsCount">📦</span>
+        </div>
+        <div class="yt-formats">
+          <h3>Available Formats</h3>
+          <div class="yt-format-list" id="ytFormatList"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Search. All rights reserved.
+  </footer>
+
+  <script src="yt-downloader.js"></script>
+  <script>
+    // Theme toggle (shared across all pages)
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      if (!toggle) return;
+
+      function setTheme(isLight) {
+        document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+        toggle.textContent = isLight ? '☀️' : '🌙';
+      }
+
+      const saved = localStorage.getItem('landing_theme');
+      if (saved === 'light') setTheme(true);
+
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        setTheme(!isLight);
+        localStorage.setItem('landing_theme', isLight ? 'dark' : 'light');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow · Todo</title>
+  <link rel="stylesheet" href="todo.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-left">
+        <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <h1>TaskFlow</h1>
+      </div>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">🌙</button>
+    </header>
+
+    <form id="todo-form" class="input-row">
+      <input type="text" id="todo-input" placeholder="Add a new task…" autofocus>
+      <button type="submit" id="add-btn">Add</button>
+    </form>
+
+    <div class="stats">
+      <span id="task-count">0 tasks</span>
+      <button id="clear-btn" class="clear-btn">Clear completed</button>
+    </div>
+
+    <ul id="todo-list"></ul>
+
+    <div class="empty-state" id="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 11l3 3L22 4"/>
+        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+      </svg>
+      <p>Your task list is empty</p>
+      <span>Add a task above to get started</span>
+    </div>
+  </div>
+
+  <script src="todo.js"></script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+/* ============================================
+   Pomodoro — Theme Stylesheet
+   ============================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ── Dark theme (default) ── */
+  --bg: #0f0e17;
+  --surface: #1a1a2e;
+  --surface-border: rgba(255, 255, 255, 0.06);
+  --text: #fffffe;
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-dim: rgba(255, 255, 255, 0.25);
+  --accent: #ff6b6b;
+  --accent-glow: rgba(255, 107, 107, 0.3);
+  --accent-muted: rgba(255, 107, 107, 0.15);
+  --btn-primary-bg: #ff6b6b;
+  --btn-primary-hover: #ff5252;
+  --btn-primary-text: #fff;
+  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
+  --btn-secondary-hover: rgba(255, 255, 255, 0.12);
+  --btn-secondary-text: rgba(255, 255, 255, 0.7);
+  --btn-ghost-text: rgba(255, 255, 255, 0.4);
+  --btn-ghost-hover: rgba(255, 255, 255, 0.08);
+  --stat-text: rgba(255, 255, 255, 0.25);
+  --theme-btn-bg: rgba(255, 255, 255, 0.06);
+  --theme-btn-hover: rgba(255, 255, 255, 0.12);
+  --progress-bg: rgba(255, 255, 255, 0.06);
+  --progress-fill: #ff6b6b;
+  --phase-color: rgba(255, 255, 255, 0.4);
+  --transition: 0.25s ease;
+}
+
+/* ── Light theme ── */
+:root[data-theme="light"] {
+  --bg: #f8f7fc;
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-border: rgba(0, 0, 0, 0.06);
+  --text: #1a1a2e;
+  --text-secondary: rgba(0, 0, 0, 0.5);
+  --text-dim: rgba(0, 0, 0, 0.2);
+  --accent: #e85d5d;
+  --accent-glow: rgba(232, 93, 93, 0.2);
+  --accent-muted: rgba(232, 93, 93, 0.08);
+  --btn-primary-bg: #e85d5d;
+  --btn-primary-hover: #d44545;
+  --btn-primary-text: #fff;
+  --btn-secondary-bg: rgba(0, 0, 0, 0.04);
+  --btn-secondary-hover: rgba(0, 0, 0, 0.08);
+  --btn-secondary-text: rgba(0, 0, 0, 0.55);
+  --btn-ghost-text: rgba(0, 0, 0, 0.3);
+  --btn-ghost-hover: rgba(0, 0, 0, 0.05);
+  --stat-text: rgba(0, 0, 0, 0.2);
+  --theme-btn-bg: rgba(0, 0, 0, 0.04);
+  --theme-btn-hover: rgba(0, 0, 0, 0.08);
+  --progress-bg: rgba(0, 0, 0, 0.04);
+  --progress-fill: #e85d5d;
+  --phase-color: rgba(0, 0, 0, 0.35);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition);
+}
+
+.app {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── Header ── */
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--text-secondary);
+}
+
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: var(--theme-btn-bg);
+  color: var(--text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), color var(--transition);
+  user-select: none;
+}
+
+.theme-btn:hover {
+  background: var(--theme-btn-hover);
+  color: var(--text);
+}
+
+/* ── Timer ── */
+
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.progress-ring {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.progress-ring svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.progress-bg {
+  fill: none;
+  stroke: var(--progress-bg);
+  stroke-width: 6;
+}
+
+.progress-fill {
+  fill: none;
+  stroke: var(--progress-fill);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s ease, stroke var(--transition);
+}
+
+.timer-display {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 58px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--transition);
+}
+
+.phase-label {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--phase-color);
+  transition: color var(--transition);
+}
+
+/* ── Progress Bar ── */
+
+.progress-bar-track {
+  width: 100%;
+  height: 4px;
+  background: var(--progress-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: background var(--transition);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--progress-fill);
+  border-radius: 4px;
+  transition: width 0.3s ease, background var(--transition);
+}
+
+.finished .progress-bar-fill {
+  background: #4ade80;
+}
+
+/* ── Controls ── */
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition), opacity var(--transition),
+    transform var(--transition), color var(--transition);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  min-width: 100px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--btn-primary-hover);
+}
+
+.btn-secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  min-width: 100px;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--btn-secondary-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--btn-ghost-text);
+  min-width: 90px;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--btn-ghost-hover);
+}
+
+/* ── Session Stats ── */
+
+.session-stats {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--stat-text);
+  letter-spacing: 1px;
+  transition: color var(--transition);
+}
+
+/* ── Session History ── */
+
+.history {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.history-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--stat-text);
+  transition: color var(--transition);
+}
+
+.history-clear {
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--btn-ghost-text);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background var(--transition), color var(--transition);
+}
+
+.history-clear:hover {
+  background: var(--btn-ghost-hover);
+  color: var(--text-secondary);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.history-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--btn-secondary-bg);
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: background var(--transition), color var(--transition);
+}
+
+.history-entry-time {
+  font-variant-numeric: tabular-nums;
+}
+
+.history-entry-label {
+  font-size: 11px;
+  color: var(--btn-ghost-text);
+}
+
+.history-empty {
+  text-align: center;
+  padding: 12px;
+  font-size: 12px;
+  color: var(--btn-ghost-text);
+  font-style: italic;
+}
+
+/* ── Running state ── */
+
+.running .progress-fill {
+  stroke: var(--progress-fill);
+}
+
+.running .phase-label {
+  color: var(--accent);
+}
+
+/* ── Finished state ── */
+
+.finished .timer-display {
+  animation: pulse 0.8s ease-in-out infinite;
+}
+
+.finished .progress-fill {
+  stroke: #4ade80;
+}
+
+.finished .phase-label {
+  color: #4ade80;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+  .app {
+    padding: 20px;
+  }
+
+  header {
+    margin-bottom: 36px;
+  }
+
+  .progress-ring {
+    width: 190px;
+    height: 190px;
+  }
+
+  .timer-display {
+    font-size: 48px;
+  }
+
+  .controls {
+    gap: 8px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    min-width: 80px;
+  }
+
+  .btn-ghost {
+    min-width: 70px;
+  }
+}

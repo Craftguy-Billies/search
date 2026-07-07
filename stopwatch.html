@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch · Lap Timer</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="stopwatch.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-left">
+        <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="13" r="8"/>
+          <path d="M12 9v4l2.5 2.5"/>
+          <path d="M12 5V3"/>
+          <path d="M9 2h6"/>
+        </svg>
+        <h1>Stopwatch</h1>
+      </div>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">🌙</button>
+    </header>
+
+    <div class="timer-display" id="timer-display">00:00.00</div>
+
+    <div class="controls">
+      <button class="btn btn-start" id="start-btn">▶ Start</button>
+      <button class="btn btn-lap" id="lap-btn" disabled>⏱ Lap</button>
+      <button class="btn btn-reset" id="reset-btn">↺ Reset</button>
+    </div>
+
+    <div class="laps-header">
+      <span class="laps-title">Laps</span>
+      <span id="lap-count">0 laps</span>
+    </div>
+
+    <div class="laps-list" id="laps-list">
+      <div class="laps-empty">No laps recorded yet</div>
+    </div>
+  </div>
+
+  <script src="stopwatch.js"></script>
+</body>
+</html>
