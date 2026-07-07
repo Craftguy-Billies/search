@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile · Search</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="profile-page">
+  <div class="bg-gradient"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grid-overlay"></div>
+
+  <nav>
+    <div class="logo">✦ Search</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="profile.html" class="active">Profile</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <main class="profile-container">
+    <!-- ── Hero / Cover ── -->
+    <div class="profile-cover">
+      <div class="profile-cover-img" id="coverImage"></div>
+      <div class="profile-info">
+        <div class="profile-avatar" id="profileAvatar">👤</div>
+        <div class="profile-meta">
+          <h1 id="profileName">Guest User</h1>
+          <p class="profile-handle" id="profileHandle">@guest</p>
+          <p class="profile-bio" id="profileBio">Explorer. Curator. Maker.</p>
+          <div class="profile-location">
+            <span>📍</span>
+            <span id="profileLocation">Internet</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Stats bar ── -->
+    <div class="profile-stats">
+      <div class="stat-item">
+        <div class="stat-number" id="statVideos">128</div>
+        <div class="stat-label">Videos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="statPlaylists">24</div>
+        <div class="stat-label">Playlists</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="statFollowers">1.2K</div>
+        <div class="stat-label">Followers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="statFollowing">89</div>
+        <div class="stat-label">Following</div>
+      </div>
+    </div>
+
+    <!-- ── Content tabs ── -->
+    <div class="profile-tabs">
+      <button class="tab-btn active" data-tab="activity">Activity</button>
+      <button class="tab-btn" data-tab="playlists">Playlists</button>
+      <button class="tab-btn" data-tab="saved">Saved</button>
+    </div>
+
+    <!-- ── Activity tab ── -->
+    <div class="tab-content active" id="tab-activity">
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="activity-icon">▶️</div>
+          <div class="activity-body">
+            <p><strong>Curated</strong> “Building the Future” <span class="activity-meta">to Tech playlist</span></p>
+            <span class="activity-time">2 hours ago</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">⭐</div>
+          <div class="activity-body">
+            <p><strong>Saved</strong> “Minimalist Architecture”</p>
+            <span class="activity-time">Yesterday</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">📁</div>
+          <div class="activity-body">
+            <p><strong>Created</strong> playlist “Design Inspiration” <span class="activity-meta">· 12 videos</span></p>
+            <span class="activity-time">3 days ago</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">❤️</div>
+          <div class="activity-body">
+            <p><strong>Liked</strong> “The Art of Code” by CreativeDev</p>
+            <span class="activity-time">1 week ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Playlists tab ── -->
+    <div class="tab-content" id="tab-playlists">
+      <div class="playlist-grid">
+        <div class="playlist-card">
+          <div class="playlist-thumb">🎵</div>
+          <div class="playlist-card-body">
+            <h3>Tech Talks</h3>
+            <p>12 videos · Curated Collection</p>
+          </div>
+        </div>
+        <div class="playlist-card">
+          <div class="playlist-thumb">🎨</div>
+          <div class="playlist-card-body">
+            <h3>Design Inspiration</h3>
+            <p>8 videos · Weekly Updated</p>
+          </div>
+        </div>
+        <div class="playlist-card">
+          <div class="playlist-thumb">🌍</div>
+          <div class="playlist-card-body">
+            <h3>Travel Diaries</h3>
+            <p>6 videos · Wanderlust</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Saved tab ── -->
+    <div class="tab-content" id="tab-saved">
+      <div class="saved-grid">
+        <div class="saved-item">
+          <span class="saved-icon">▶️</span>
+          <div>
+            <p class="saved-title">Building the Future</p>
+            <p class="saved-source">TechChannel</p>
+          </div>
+        </div>
+        <div class="saved-item">
+          <span class="saved-icon">▶️</span>
+          <div>
+            <p class="saved-title">Minimalist Architecture</p>
+            <p class="saved-source">DesignDocs</p>
+          </div>
+        </div>
+        <div class="saved-item">
+          <span class="saved-icon">▶️</span>
+          <div>
+            <p class="saved-title">The Art of Code</p>
+            <p class="saved-source">CreativeDev</p>
+          </div>
+        </div>
+        <div class="saved-item">
+          <span class="saved-icon">▶️</span>
+          <div>
+            <p class="saved-title">Jazz Vibes Playlist</p>
+            <p class="saved-source">MusicHub</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Search. All rights reserved.
+  </footer>
+
+  <script src="profile.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
