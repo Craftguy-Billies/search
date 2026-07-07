@@ -4,6 +4,7 @@
 import os
 import re
 import tempfile
+import string
 from pathlib import Path
 
 import yt_dlp
@@ -15,6 +16,19 @@ DOWNLOAD_DIR = Path(tempfile.mkdtemp(prefix="ytdl_"))
 
 # Path to the repo root (where this script lives)
 REPO_DIR = Path(__file__).resolve().parent
+
+# Regex for YouTube URLs (used by both info + download endpoints)
+YT_REGEX = re.compile(r"https?://(www\.)?(youtube\.com|youtu\.be)/")
+
+# Safe characters for filenames
+SAFE_FILENAME_CHARS = set(string.ascii_letters + string.digits + " ._-()[]")
+
+
+def _safe_filename(title: str, default: str = "video") -> str:
+    """Strip characters that could cause trouble in Content-Disposition."""
+    safe = "".join(c if c in SAFE_FILENAME_CHARS else "_" for c in title)
+    safe = re.sub(r"_+", "_", safe).strip("_")
+    return safe or default
 
 
 def extract_info(url):
@@ -29,7 +43,6 @@ def extract_info(url):
 
     formats = []
     for f in info.get("formats", []):
-        # Skip audio-only formats unless they're the only option
         fmt = {
             "format_id": f.get("format_id"),
             "ext": f.get("ext"),
@@ -106,25 +119,13 @@ def extract_info(url):
     }
 
 
-@app.route("/")
-def index():
-    return send_from_directory(REPO_DIR, "youtube-downloader.html")
-
-
-@app.route("/<path:filename>")
-def static_files(filename):
-    """Serve static frontend files."""
-    safe = Path(filename).name
-    return send_from_directory(REPO_DIR, safe)
-
-
 @app.route("/api/info", methods=["POST"])
 def api_info():
     data = request.get_json(force=True)
     url = data.get("url", "").strip()
     if not url:
         return jsonify({"error": "No URL provided"}), 400
-    if not re.match(r"https?://(www\.)?(youtube\.com|youtu\.be)/", url):
+    if not YT_REGEX.match(url):
         return jsonify({"error": "Not a valid YouTube URL"}), 400
 
     try:
@@ -141,8 +142,9 @@ def api_download():
 
     if not url:
         return jsonify({"error": "No URL provided"}), 400
+    if not YT_REGEX.match(url):
+        return jsonify({"error": "Not a valid YouTube URL"}), 400
 
-    # Sanitize filename
     ydl_opts = {
         "quiet": True,
         "no_warnings": True,
@@ -157,7 +159,6 @@ def api_download():
             info = ydl.extract_info(url, download=True)
             filename = ydl.prepare_filename(info)
 
-            # yt-dlp may change extension after merging
             p = Path(filename)
             if not p.exists():
                 p = p.with_suffix(".mp4")
@@ -175,13 +176,13 @@ def api_download():
                     p.unlink(missing_ok=True)
                 except Exception:
                     pass
-                return response
 
+            safe_title = _safe_filename(info.get("title", "video"))
             as_attachment = request.args.get("dl", "1") == "1"
             return send_file(
                 str(p),
                 as_attachment=as_attachment,
-                download_name=f"{info.get('title', 'video')}.{p.suffix[1:] or 'mp4'}",
+                download_name=f"{safe_title}.{p.suffix[1:] or 'mp4'}",
             )
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -190,6 +191,22 @@ def api_download():
 @app.route("/api/health")
 def health():
     return jsonify({"status": "ok"})
+
+
+# ── Static file routes (defined after API routes to avoid overlap) ──
+
+@app.route("/")
+def index():
+    return send_from_directory(REPO_DIR, "youtube-downloader.html")
+
+
+@app.route("/<path:filename>")
+def static_files(filename):
+    """Serve frontend static assets (HTML, CSS, JS only)."""
+    name = Path(filename).name
+    if not any(name.endswith(ext) for ext in (".html", ".css", ".js", ".svg", ".png", ".ico", ".json")):
+        return jsonify({"error": "Not found"}), 404
+    return send_from_directory(REPO_DIR, name)
 
 
 if __name__ == "__main__":

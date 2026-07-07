@@ -141,14 +141,34 @@ function renderFormats(streams) {
 
     const div = document.createElement('label');
     div.className = 'format-option' + (i === 0 ? ' selected' : '');
-    div.innerHTML = `
-      <input type="radio" name="format" value="${s.format_id}" ${i === 0 ? 'checked' : ''}>
-      <span class="format-label">${label}</span>
-      ${s.ext && !s.special ? `<span class="format-ext">${s.ext}</span>` : ''}
-      ${size ? `<span class="format-size">${size}</span>` : ''}
-    `;
 
-    div.querySelector('input').addEventListener('change', (e) => {
+    const radio = document.createElement('input');
+    radio.type = 'radio';
+    radio.name = 'format';
+    radio.value = s.format_id;
+    if (i === 0) radio.checked = true;
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'format-label';
+    labelSpan.textContent = label;
+
+    div.append(radio, labelSpan);
+
+    if (s.ext && !s.special) {
+      const extSpan = document.createElement('span');
+      extSpan.className = 'format-ext';
+      extSpan.textContent = s.ext;
+      div.append(extSpan);
+    }
+
+    if (size) {
+      const sizeSpan = document.createElement('span');
+      sizeSpan.className = 'format-size';
+      sizeSpan.textContent = size;
+      div.append(sizeSpan);
+    }
+
+    radio.addEventListener('change', (e) => {
       $$('.format-option').forEach((el) => el.classList.remove('selected'));
       div.classList.add('selected');
       selectedFormatId = e.target.value;
