@@ -191,3 +191,24 @@ npm test
 ├── package.json        Node project configuration
 └── README.md           This file
 ```
+
+---
+
+### ✅ Flutter TODO App (`flutter_todo_app/`)
+
+A cross-platform TODO application built with Flutter and Material Design 3.
+
+- Add, complete, and delete tasks
+- Swipe to dismiss tasks
+- Clear all completed tasks in one tap
+- Empty state illustration
+- Dark mode support (follows system preference)
+- Task counter showing progress
+
+**Files:** `flutter_todo_app/pubspec.yaml`, `flutter_todo_app/lib/main.dart`
+
+**To run:**
+```bash
+cd flutter_todo_app
+flutter run
+```
