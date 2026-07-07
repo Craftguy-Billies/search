@@ -82,6 +82,19 @@ Simple informational page with navigation, centered layout, and a dark mode togg
 
 **Files:** `about.html`
 
+### ⬇️ YouTube Downloader
+Download YouTube videos and audio in various formats. Paste any YouTube link to fetch available formats and download directly.
+
+- Backend powered by [yt-dlp](https://github.com/yt-dlp/yt-dlp) for reliable format extraction
+- Fetches video metadata (title, thumbnail, duration, author) via oEmbed
+- Lists all available formats sorted by quality (video+audio combos, video-only, audio-only)
+- Proxies downloads through the server for seamless file delivery
+- Dark/light theme toggle
+
+**Files:** `yt-downloader.html`, `yt-downloader.css`, `yt-downloader.js`, `server.js`
+
+> **📌 Note:** The downloader requires the Node.js server to be running. Start it with `npm start` from the project root. The server requires `yt-dlp` to be installed on the system (`pip install yt-dlp`).
+
 ## Features
 
 - **Dark/light themes** across all apps — preferences saved to localStorage
@@ -167,6 +180,10 @@ npm test
 ├── notes.html          Notebook app
 ├── notes.css           Notebook styles
 ├── notes.js            Notebook logic
+├── yt-downloader.html  YouTube Downloader app
+├── yt-downloader.css   YouTube Downloader styles
+├── yt-downloader.js    YouTube Downloader logic
+├── server.js           YouTube Downloader backend (yt-dlp)
 ├── favicon.svg         App favicon
 ├── js/
 │   ├── app.js          Core logic (pure functions, no DOM dependency)
