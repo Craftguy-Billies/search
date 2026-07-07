@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube · Video Displayer</title>
+  <link rel="stylesheet" href="youtube-displayer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-left">
+        <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+        <h1>YouTube</h1>
+      </div>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">🌙</button>
+    </header>
+
+    <div class="input-row">
+      <input type="text" id="video-input" placeholder="Paste a YouTube URL or video ID…" autocomplete="off" spellcheck="false">
+      <button class="btn btn-primary" id="add-btn">+ Add</button>
+    </div>
+
+    <div class="player-wrapper" id="player-wrapper">
+      <div class="player-placeholder" id="player-placeholder">
+        <div class="placeholder-icon">▶</div>
+        <p>Add a video to start watching</p>
+      </div>
+      <div id="player" style="display:none;"></div>
+    </div>
+
+    <div class="video-info" id="video-info" style="display:none;">
+      <div class="video-title" id="video-title"></div>
+      <div class="video-channel" id="video-channel"></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="playlist">Playlist</button>
+      <button class="tab" data-tab="history">History</button>
+    </div>
+
+    <div class="list-panel" id="playlist-panel"></div>
+    <div class="list-panel" id="history-panel" style="display:none;"></div>
+
+    <div class="list-counter" id="list-counter"></div>
+  </div>
+
+  <script src="youtube-displayer.js"></script>
+</body>
+</html>
