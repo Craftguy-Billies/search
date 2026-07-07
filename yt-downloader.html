@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Downloader — VideoVault</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="yt-downloader.css">
+</head>
+<body class="downloader-page">
+  <div class="bg-gradient"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grid-overlay"></div>
+
+  <nav>
+    <div class="logo">✦ VideoVault</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="yt-downloader.html" class="active">Downloader</a>
+      <a href="about.html">About</a>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <main class="downloader-main">
+    <div class="downloader-hero">
+      <div class="hero-badge">⬇️ YouTube Video Downloader</div>
+      <h1>Download any<br><span class="gradient-text">YouTube video</span></h1>
+      <p>Paste a YouTube link and download videos in your preferred quality and format.</p>
+    </div>
+
+    <div class="downloader-card">
+      <div class="input-group">
+        <div class="url-input-wrapper">
+          <span class="input-icon">🔗</span>
+          <input
+            type="text"
+            id="urlInput"
+            placeholder="Paste YouTube URL here…"
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
+        <button id="fetchBtn" class="btn btn-primary">Get Video</button>
+      </div>
+
+      <div id="errorBox" class="error-box" hidden>
+        <span class="error-icon">⚠️</span>
+        <span id="errorText"></span>
+      </div>
+
+      <div id="loadingSpinner" class="loading-spinner" hidden>
+        <div class="spinner"></div>
+        <span>Fetching video info…</span>
+      </div>
+
+      <div id="videoInfo" class="video-info" hidden>
+        <div class="video-preview">
+          <img id="thumbnail" src="" alt="Video thumbnail">
+          <div class="video-meta">
+            <h2 id="videoTitle"></h2>
+            <p class="uploader">
+              <span id="uploaderName"></span>
+              <span class="meta-sep">·</span>
+              <span id="videoDuration"></span>
+              <span class="meta-sep">·</span>
+              <span id="viewCount"></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="format-section">
+          <h3>Choose format</h3>
+          <div class="format-grid" id="formatGrid">
+            <!-- Format cards rendered by JS -->
+          </div>
+        </div>
+
+        <div id="downloadProgress" class="download-progress" hidden>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <span id="progressText">Preparing download…</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 VideoVault. Built with yt-dlp.</p>
+  </footer>
+
+  <script src="yt-downloader.js"></script>
+  <script>
+    // Theme toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      if (!toggle) return;
+
+      function setTheme(isLight) {
+        document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+        toggle.textContent = isLight ? '☀️' : '🌙';
+      }
+
+      const saved = localStorage.getItem('landing_theme');
+      if (saved === 'light') setTheme(true);
+
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        setTheme(!isLight);
+        localStorage.setItem('landing_theme', isLight ? 'dark' : 'light');
+      });
+    });
+  </script>
+</body>
+</html>
