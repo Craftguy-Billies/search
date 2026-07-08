@@ -153,6 +153,8 @@ Then open `http://localhost:8080` in your browser.
 > **📌 T3-C:** third
 >
 > **📌 T4-A:** first
+>
+> **📌 Count:** two
 
 ## Tests
 

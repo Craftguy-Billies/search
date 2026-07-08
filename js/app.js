@@ -88,6 +88,10 @@ function goodbye() {
   return 'goodbye';
 }
 
+function count() {
+  return 'two';
+}
+
 // Export for testing
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
@@ -104,6 +108,7 @@ if (typeof module !== 'undefined' && module.exports) {
     loadTheme,
     hello,
     goodbye,
+    count,
     STORAGE_KEY,
     THEME_KEY
   };

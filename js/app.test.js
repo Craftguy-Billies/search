@@ -21,7 +21,8 @@ const {
   saveTheme,
   loadTheme,
   hello,
-  goodbye
+  goodbye,
+  count
 } = require('./app');
 
 // ---------------------------------------------------------------------------
@@ -338,5 +339,14 @@ describe('hello', () => {
 describe('goodbye', () => {
   test('returns "goodbye"', () => {
     expect(goodbye()).toBe('goodbye');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// count
+// ---------------------------------------------------------------------------
+describe('count', () => {
+  test('returns "two"', () => {
+    expect(count()).toBe('two');
   });
 });
