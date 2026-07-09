@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings · Search</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="settings-page">
+  <div class="bg-gradient"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grid-overlay"></div>
+
+  <nav>
+    <div class="logo">✦ Search</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="settings.html" class="active">Settings</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <main class="settings-container">
+    <div class="settings-header">
+      <h1>Settings</h1>
+      <p>Customize your experience</p>
+    </div>
+
+    <div class="settings-sections">
+      <!-- ── Profile ── -->
+      <section class="settings-card" id="section-profile">
+        <div class="settings-card-header">
+          <span class="settings-card-icon">👤</span>
+          <div>
+            <h2>Profile</h2>
+            <p>Your public profile information</p>
+          </div>
+        </div>
+        <div class="settings-card-body">
+          <div class="settings-avatar">
+            <div class="avatar-preview" id="avatarPreview">👤</div>
+            <div>
+              <button class="btn btn-secondary btn-sm" id="avatarUploadBtn">Change Photo</button>
+              <p class="settings-hint">PNG, JPG. Max 2MB.</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="displayName">Display Name</label>
+            <input type="text" id="displayName" placeholder="Your name" value="Guest User">
+          </div>
+          <div class="form-group">
+            <label for="userEmail">Email</label>
+            <input type="email" id="userEmail" placeholder="you@example.com" value="guest@search.app">
+          </div>
+          <div class="form-group">
+            <label for="userBio">Bio</label>
+            <textarea id="userBio" rows="3" placeholder="Tell us about yourself…"></textarea>
+          </div>
+          <button class="btn btn-primary btn-sm" id="saveProfileBtn">Save Changes</button>
+        </div>
+      </section>
+
+      <!-- ── Appearance ── -->
+      <section class="settings-card" id="section-appearance">
+        <div class="settings-card-header">
+          <span class="settings-card-icon">🎨</span>
+          <div>
+            <h2>Appearance</h2>
+            <p>Theme, layout, and display preferences</p>
+          </div>
+        </div>
+        <div class="settings-card-body">
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Theme</span>
+              <span class="setting-row-desc">Choose between dark and light mode</span>
+            </div>
+            <div class="toggle-group" id="themeSelect">
+              <button class="toggle-btn active" data-theme="dark">🌙 Dark</button>
+              <button class="toggle-btn" data-theme="light">☀️ Light</button>
+            </div>
+          </div>
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Font Size</span>
+              <span class="setting-row-desc">Adjust text size across the app</span>
+            </div>
+            <div class="toggle-group" id="fontSizeSelect">
+              <button class="toggle-btn" data-size="small">Small</button>
+              <button class="toggle-btn active" data-size="medium">Medium</button>
+              <button class="toggle-btn" data-size="large">Large</button>
+            </div>
+          </div>
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Reduced Motion</span>
+              <span class="setting-row-desc">Minimize animations and transitions</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="reducedMotion">
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Notifications ── -->
+      <section class="settings-card" id="section-notifications">
+        <div class="settings-card-header">
+          <span class="settings-card-icon">🔔</span>
+          <div>
+            <h2>Notifications</h2>
+            <p>Manage what alerts you receive</p>
+          </div>
+        </div>
+        <div class="settings-card-body">
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Email Notifications</span>
+              <span class="setting-row-desc">Receive updates via email</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="emailNotifications" checked>
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Push Notifications</span>
+              <span class="setting-row-desc">Browser push alerts for important updates</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="pushNotifications" checked>
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Sound Effects</span>
+              <span class="setting-row-desc">Play sounds for notifications</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="soundEffects">
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Privacy ── -->
+      <section class="settings-card" id="section-privacy">
+        <div class="settings-card-header">
+          <span class="settings-card-icon">🔒</span>
+          <div>
+            <h2>Privacy</h2>
+            <p>Control your data and visibility</p>
+          </div>
+        </div>
+        <div class="settings-card-body">
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Public Profile</span>
+              <span class="setting-row-desc">Allow others to see your profile</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="publicProfile" checked>
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Analytics</span>
+              <span class="setting-row-desc">Help us improve with anonymous usage data</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="analytics" checked>
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Export Data</span>
+              <span class="setting-row-desc">Download all your data at any time</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="exportDataBtn">Export</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Danger Zone ── -->
+      <section class="settings-card settings-card--danger" id="section-danger">
+        <div class="settings-card-header">
+          <span class="settings-card-icon">⚠️</span>
+          <div>
+            <h2>Danger Zone</h2>
+            <p>Irreversible actions</p>
+          </div>
+        </div>
+        <div class="settings-card-body">
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Reset All Settings</span>
+              <span class="setting-row-desc">Restore all preferences to their defaults</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="resetSettingsBtn">Reset</button>
+          </div>
+          <div class="setting-row">
+            <div class="setting-row-info">
+              <span class="setting-row-label">Delete Account</span>
+              <span class="setting-row-desc">Permanently delete your account and all data</span>
+            </div>
+            <button class="btn btn-sm btn-danger" id="deleteAccountBtn">Delete</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Search. All rights reserved.
+  </footer>
+
+  <script src="settings.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
